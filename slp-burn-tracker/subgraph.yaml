@@ -1,0 +1,54 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Slp
+    network: mainnet
+    source:
+      address: "0xfff9ce5f71ca6178d3beecedb61e7eff1602950e"
+      abi: Slp
+      startBlock: 13125000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - AdminRemoved
+        - Approval
+        - BreedingPotionCheckpoint
+        - MinterAdded
+        - MinterRemoved
+        - Paused
+        - SpenderUnwhitelisted
+        - SpenderWhitelisted
+        - Transfer
+        - Unpaused
+      abis:
+        - name: Slp
+          file: ./abis/Slp.json
+      eventHandlers:
+        - event: AdminChanged(indexed address,indexed address)
+          handler: handleAdminChanged
+        - event: AdminRemoved(indexed address)
+          handler: handleAdminRemoved
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: BreedingPotionCheckpoint(indexed address,indexed uint256)
+          handler: handleBreedingPotionCheckpoint
+        - event: MinterAdded(indexed address)
+          handler: handleMinterAdded
+        - event: MinterRemoved(indexed address)
+          handler: handleMinterRemoved
+        - event: Paused()
+          handler: handlePaused
+        - event: SpenderUnwhitelisted(indexed address)
+          handler: handleSpenderUnwhitelisted
+        - event: SpenderWhitelisted(indexed address)
+          handler: handleSpenderWhitelisted
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Unpaused()
+          handler: handleUnpaused
+      file: ./src/slp.ts
