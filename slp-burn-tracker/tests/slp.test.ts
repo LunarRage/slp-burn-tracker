@@ -7,51 +7,51 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import { AdminChanged } from "../generated/schema"
+//import { AdminChanged } from "../generated/schema"
 import { AdminChanged as AdminChangedEvent } from "../generated/Slp/Slp"
-import { handleAdminChanged } from "../src/slp"
-import { createAdminChangedEvent } from "./slp-utils"
+//import { handleAdminChanged } from "../src/slp"
+import { createTransferEvent } from "./slp-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
 
-describe("Describe entity assertions", () => {
-  beforeAll(() => {
-    let _oldAdmin = Address.fromString(
-      "0x0000000000000000000000000000000000000001"
-    )
-    let _newAdmin = Address.fromString(
-      "0x0000000000000000000000000000000000000001"
-    )
-    let newAdminChangedEvent = createAdminChangedEvent(_oldAdmin, _newAdmin)
-    handleAdminChanged(newAdminChangedEvent)
-  })
+// describe("Describe entity assertions", () => {
+//   beforeAll(() => {
+//     let _oldAdmin = Address.fromString(
+//       "0x0000000000000000000000000000000000000001"
+//     )
+//     let _newAdmin = Address.fromString(
+//       "0x0000000000000000000000000000000000000001"
+//     )
+//     let newAdminChangedEvent = createAdminChangedEvent(_oldAdmin, _newAdmin)
+//     handleAdminChanged(newAdminChangedEvent)
+//   })
 
-  afterAll(() => {
-    clearStore()
-  })
+//   afterAll(() => {
+//     clearStore()
+//   })
 
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("AdminChanged created and stored", () => {
-    assert.entityCount("AdminChanged", 1)
+//   test("AdminChanged created and stored", () => {
+//     assert.entityCount("AdminChanged", 1)
 
-    // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
-    assert.fieldEquals(
-      "AdminChanged",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "_oldAdmin",
-      "0x0000000000000000000000000000000000000001"
-    )
-    assert.fieldEquals(
-      "AdminChanged",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "_newAdmin",
-      "0x0000000000000000000000000000000000000001"
-    )
+//     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
+//     assert.fieldEquals(
+//       "AdminChanged",
+//       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+//       "_oldAdmin",
+//       "0x0000000000000000000000000000000000000001"
+//     )
+//     assert.fieldEquals(
+//       "AdminChanged",
+//       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+//       "_newAdmin",
+//       "0x0000000000000000000000000000000000000001"
+//     )
 
-    // More assert options:
-    // https://thegraph.com/docs/en/developer/matchstick/#asserts
-  })
-})
+//     // More assert options:
+//     // https://thegraph.com/docs/en/developer/matchstick/#asserts
+//   })
+// })

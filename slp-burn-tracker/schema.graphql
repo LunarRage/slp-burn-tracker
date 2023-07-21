@@ -1,93 +1,13 @@
-type AdminChanged @entity(immutable: true) {
+type User @entity {
   id: Bytes!
-  _oldAdmin: Bytes! # address
-  _newAdmin: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+  balance: BigInt!
+  burnTransactions: [BurnTransaction!]! @derivedFrom(field:"sender")
 }
 
-type AdminRemoved @entity(immutable: true) {
+type BurnTransaction @entity(immutable:true){
   id: Bytes!
-  _oldAdmin: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Approval @entity(immutable: true) {
-  id: Bytes!
-  _owner: Bytes! # address
-  _spender: Bytes! # address
-  _value: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type BreedingPotionCheckpoint @entity(immutable: true) {
-  id: Bytes!
-  _owner: Bytes! # address
-  _amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type MinterAdded @entity(immutable: true) {
-  id: Bytes!
-  _minter: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type MinterRemoved @entity(immutable: true) {
-  id: Bytes!
-  _minter: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Paused @entity(immutable: true) {
-  id: Bytes!
-
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type SpenderUnwhitelisted @entity(immutable: true) {
-  id: Bytes!
-  _spender: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type SpenderWhitelisted @entity(immutable: true) {
-  id: Bytes!
-  _spender: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Transfer @entity(immutable: true) {
-  id: Bytes!
-  _from: Bytes! # address
-  _to: Bytes! # address
-  _value: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Unpaused @entity(immutable: true) {
-  id: Bytes!
-
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+  txHash: Bytes!
+  timestamp: BigInt!
+  amount: BigInt!
+  sender: User!
 }

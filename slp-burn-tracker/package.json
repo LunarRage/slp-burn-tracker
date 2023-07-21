@@ -4,7 +4,9 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ slp-burn-tracker",
+    "create": "graph create slp-burn-tracker --node https://dnaoversight.gg/deploy",
+    "remove": "graph remove slp-burn-tracker --node https://dnaoversight.gg/deploy",
+    "deploy": "graph deploy slp-burn-tracker --version-label v1.0.0 --node https://dnaoversight.gg/deploy",
     "create-local": "graph create --node http://localhost:8020/ slp-burn-tracker",
     "remove-local": "graph remove --node http://localhost:8020/ slp-burn-tracker",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 slp-burn-tracker",
