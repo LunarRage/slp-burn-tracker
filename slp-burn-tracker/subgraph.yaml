@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xa8754b9fa15fc18bb59458815510e40a12cd2014"
       abi: Slp
-      startBlock: 13125000
+      startBlock: 13129650
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

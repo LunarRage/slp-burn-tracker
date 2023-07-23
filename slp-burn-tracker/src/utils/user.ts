@@ -2,7 +2,6 @@ import { BigInt, Bytes, log } from "@graphprotocol/graph-ts";
 import { Transfer } from "../../generated/Slp/Slp";
 import { BURN_H, SEPERATOR } from "./constant";
 
-
 export function filterBurn(txInput:Bytes):boolean{
     const funcHeader = changetype<Bytes>(txInput.subarray(0,4));
     const isBurnTransfer = BURN_H.has(funcHeader.toHexString());

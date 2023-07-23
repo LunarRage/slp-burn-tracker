@@ -11,3 +11,10 @@ type BurnTransaction @entity(immutable:true){
   amount: BigInt!
   sender: User!
 }
+
+type Statistic @entity{
+  id:Bytes!
+  totalBurned: BigInt!
+  totalUsers: BigInt!
+  totalTransactions: BigInt!
+}
