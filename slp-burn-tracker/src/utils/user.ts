@@ -1,16 +1,13 @@
 import { BigInt, Bytes, log } from "@graphprotocol/graph-ts";
 import { Transfer } from "../../generated/Slp/Slp";
-import { BURN_H, SEPERATOR } from "./constant";
+import {SEPERATOR, BURNCODE } from "./constant";
+
+
 
 export function filterBurn(txInput:Bytes):boolean{
-    const funcHeader = changetype<Bytes>(txInput.subarray(0,4));
-    const isBurnTransfer = BURN_H.has(funcHeader.toHexString());
+    const funcHeader = changetype<Bytes>(txInput.subarray(0, 4));
 
-    if(isBurnTransfer){
-        log.info("Burn Transaction Input:", [txInput.toHexString()]);
-        return true;
-    }
-    return false;
+    return funcHeader == BURNCODE;
 }
 
 export class UserStore{

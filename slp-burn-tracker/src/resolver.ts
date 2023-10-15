@@ -4,20 +4,17 @@ import { findStatistics, registerBurnTransaction, registerStatistics, statistics
 import { UserStore, filterBurn } from "./utils/user";
 
 export function handleTransfer(event: TransferEvent): void {
-  const isStatisticsInitialized = findStatistics();
-  if(!isStatisticsInitialized){
-    registerStatistics();
-  }
+
   const isBurnTransaction = filterBurn(event.transaction.input); 
 
-  if(isBurnTransaction){
+  if (isBurnTransaction) {
+    if (!findStatistics()) {
+      registerStatistics();
+    }
     const newUserStore = new UserStore(event);
-    const isStatsUpdated = statisticsUpdate(newUserStore);
-
-    if(isStatsUpdated){
-      userManager(newUserStore)
+    if (statisticsUpdate(newUserStore)) {
+      userManager(newUserStore);
       registerBurnTransaction(newUserStore);
     }
-    
   }
 }

@@ -80,11 +80,7 @@ export function saveBurnTransaction(transaction:BurnTransactionEntity):void{
 // ====================================================== //
 
 export function findStatistics():boolean{
-    const potentialStatistics = loadStatistics(STATISTICKEY);
-    if(potentialStatistics){
-        return true;
-    }
-    return false;
+    return !!loadStatistics(STATISTICKEY);
 }
 
 export function registerUser(userStore:UserStore):UserEntity | null{
@@ -108,7 +104,6 @@ export function registerStatistics():StatisticsEntity | null{
     }
 
     const newStatistics = createNewStatistics(STATISTICKEY);
-    log.info("Statistics Initialized", []);
     saveStatistics(newStatistics);
     return newStatistics;
 }
