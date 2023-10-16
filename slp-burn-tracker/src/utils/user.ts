@@ -6,8 +6,7 @@ import {SEPERATOR, BURNCODE } from "./constant";
 
 export function filterBurn(txInput:Bytes):boolean{
     const funcHeader = changetype<Bytes>(txInput.subarray(0, 4));
-
-    return funcHeader == BURNCODE;
+    return funcHeader.equals(BURNCODE);
 }
 
 export class UserStore{
